@@ -1,3 +1,5 @@
+import java.util.Queue;
+
 /**
  * Moksha Patam
  * A puzzle created by Zach Blick
@@ -16,24 +18,29 @@ public class MokshaPatam {
      */
     public static int fewestMoves(int boardsize, int[][] ladders, int[][] snakes) {
         int[] boardLayout = new int[boardsize];
-        for(int i = 1; i < boardsize + 1; i++) {
+        for (int i = 1; i < boardsize + 1; i++) {
             boardLayout[i] = i;
         }
 
-        for(int i = 0; i < ladders.length; i++) {
-
+        for (int i = 0; i < ladders.length; i++) {
+            int location = ladders[i][0];
+            int destination = ladders[i][1];
+            boardLayout[location] = destination;
         }
 
-        // I need to iterate through the snakes and ladders
-        // If there is a snake at the location, then I should make the square hold what the outcome value is
-        // Do the same thing for the ladder
+        for (int i = 0; i < snakes.length; i++) {
+            int location = snakes[i][0];
+            int destination = snakes[i][1];
+            boardLayout[location] = destination;
+        }
+
 
         // Then I need to think about whether a queue or a stack would be better for this
-            // After reviewing notes from last year, queue is better because it looks at every next move and will therefore find the most efficient path
+        // After reviewing notes from last year, queue is better because it looks at every next move and will therefore find the most efficient path
 
 
         // That said, I am not sure how I would set up the queue
-            // I will need to track how many moves I have taken, and something to make sure I havent already gone over the square
+        // I will need to track how many moves I have taken, and something to make sure I havent already gone over the square
 
 
         //Add the first node, 1, to the queue
@@ -50,9 +57,6 @@ public class MokshaPatam {
 
 
         return 0;
-    }
-    public int findLadder(int node) {
-
     }
 
 }
