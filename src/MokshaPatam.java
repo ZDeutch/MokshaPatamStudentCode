@@ -20,6 +20,10 @@ public class MokshaPatam {
             boardLayout[i] = i;
         }
 
+        for(int i = 0; i < ladders.length; i++) {
+
+        }
+
         // I need to iterate through the snakes and ladders
         // If there is a snake at the location, then I should make the square hold what the outcome value is
         // Do the same thing for the ladder
@@ -32,9 +36,25 @@ public class MokshaPatam {
             // I will need to track how many moves I have taken, and something to make sure I havent already gone over the square
 
 
+        //Add the first node, 1, to the queue
+        //While there are still nodes left in the queue:
+        //	currentNode = queue.remove()
+        //	If currentNode == last square, return its roll #!
+        //	For each roll (1-6), r:
+        //		node = the node r spaces away.
+        //		If it is the beginning of a snake/ladder:
+        //			node = the ending node of the snake/ladder
+        //		If node has never been visited:
+        //			Save the # of rolls it took to get to node
+        //			Add node to the back of the queue
 
 
         return 0;
     }
+    public int findLadder(int node) {
+
+    }
+
 }
+
 
