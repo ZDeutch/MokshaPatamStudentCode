@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -18,6 +20,7 @@ public class MokshaPatam {
      */
     public static int fewestMoves(int boardsize, int[][] ladders, int[][] snakes) {
         int[] boardLayout = new int[boardsize];
+        boolean[] visited = new boolean[boardsize];
         for (int i = 1; i < boardsize + 1; i++) {
             boardLayout[i] = i;
         }
@@ -34,13 +37,22 @@ public class MokshaPatam {
             boardLayout[location] = destination;
         }
 
+        Queue<Integer> q = new LinkedList<>();
+        q.add(boardLayout[1]);
+        visited[1] = true;
+        int roll = 0;
 
-        // Then I need to think about whether a queue or a stack would be better for this
-        // After reviewing notes from last year, queue is better because it looks at every next move and will therefore find the most efficient path
+        while(!q.isEmpty()) {
+            int currentNode = q.remove();
+            if(currentNode == boardLayout[boardsize]) {
+                return roll;
+            }
+
+            for(int i = 1; i < 7; i++) {
 
 
-        // That said, I am not sure how I would set up the queue
-        // I will need to track how many moves I have taken, and something to make sure I havent already gone over the square
+            }
+        }
 
 
         //Add the first node, 1, to the queue
