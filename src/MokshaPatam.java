@@ -19,10 +19,11 @@ public class MokshaPatam {
      *  to reach the final square on a board with the given size, ladders, and snakes.
      */
     public static int fewestMoves(int boardsize, int[][] ladders, int[][] snakes) {
-        int[] boardLayout = new int[boardsize];
-        boolean[] visited = new boolean[boardsize];
+        int[] boardLayout = new int[boardsize + 1];
+        boolean[] visited = new boolean[boardsize + 1];
+        int[] rolls = new int[boardsize + 1];
         for (int i = 1; i < boardsize + 1; i++) {
-            boardLayout[i] = i;
+            boardLayout[i - 1] = i;
         }
 
         for (int i = 0; i < ladders.length; i++) {
@@ -38,37 +39,34 @@ public class MokshaPatam {
         }
 
         Queue<Integer> q = new LinkedList<>();
-        q.add(boardLayout[1]);
+        q.add(1);
         visited[1] = true;
-        int roll = 0;
+
 
         while(!q.isEmpty()) {
             int currentNode = q.remove();
-            if(currentNode == boardLayout[boardsize]) {
-                return roll;
-            }
-
+            int nextNode;
             for(int i = 1; i < 7; i++) {
 
+                if(currentNode == boardsize) {
+                    return rolls[currentNode];
+                }
+
+                nextNode = currentNode + i;
+
+                if(nextNode > boardsize) {
+                    continue;
+                }
+                if(!visited[nextNode]) {
+                    q.add(nextNode);
+                    rolls[nextNode] = rolls[currentNode] + 1;
+                    visited[nextNode] = true;
+                }
 
             }
         }
 
-
-        //Add the first node, 1, to the queue
-        //While there are still nodes left in the queue:
-        //	currentNode = queue.remove()
-        //	If currentNode == last square, return its roll #!
-        //	For each roll (1-6), r:
-        //		node = the node r spaces away.
-        //		If it is the beginning of a snake/ladder:
-        //			node = the ending node of the snake/ladder
-        //		If node has never been visited:
-        //			Save the # of rolls it took to get to node
-        //			Add node to the back of the queue
-
-
-        return 0;
+        return -1;
     }
 
 }
